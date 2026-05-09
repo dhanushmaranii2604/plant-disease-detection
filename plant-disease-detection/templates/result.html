@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% block title %}Result - {{ disease_display }}{% endblock %}
+{% block content %}
+<div class="container py-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-9">
+
+      <!-- Result banner -->
+      {% if 'healthy' in disease_key.lower() %}
+      <div class="alert alert-success d-flex align-items-center gap-3 shadow-sm mb-4">
+        <i class="fas fa-check-circle fa-2x"></i>
+        <div>
+          <h5 class="mb-0 fw-bold">Plant is Healthy! <i class="fas fa-leaf ms-1"></i></h5>
+          <small>No disease detected in this leaf image.</small>
+        </div>
+      </div>
+      {% else %}
+      <div class="alert alert-danger d-flex align-items-center gap-3 shadow-sm mb-4">
+        <i class="fas fa-exclamation-triangle fa-2x"></i>
+        <div>
+          <h5 class="mb-0 fw-bold">Disease Detected!</h5>
+          <small>Please review the treatment recommendations below.</small>
+        </div>
+      </div>
+      {% endif %}
+
+      <div class="row g-4">
+        <!-- Left: Image + Summary -->
+        <div class="col-md-5">
+          <div class="card border-0 shadow-sm h-100">
+            <img src="{{ url_for('static', filename='uploads/' ~ image_path) }}"
+                 class="card-img-top rounded-top" style="height:220px;object-fit:cover;"
+                 alt="Uploaded leaf" onerror="this.src='https://via.placeholder.com/400x220'">
+            <div class="card-body">
+              <h5 class="fw-bold text-success">{{ plant_name }}</h5>
+              <h6 class="text-danger fw-bold mb-3">{{ disease_display }}</h6>
+
+              <div class="mb-2">
+                <small class="text-muted fw-semibold">Confidence Score</small>
+                <div class="d-flex align-items-center gap-2 mt-1">
+                  <div class="progress flex-grow-1" style="height:10px;">
+                    <div class="progress-bar {% if confidence > 80 %}bg-success{% elif confidence > 50 %}bg-warning{% else %}bg-danger{% endif %}"
+                         style="width:{{ confidence }}%"></div>
+                  </div>
+                  <strong>{{ "%.1f"|format(confidence) }}%</strong>
+                </div>
+              </div>
+
+              <div class="d-flex justify-content-between small text-muted mt-2">
+                <span><i class="fas fa-robot me-1"></i>{{ model_used }}</span>
+                <span><i class="fas fa-clock me-1"></i>Just now</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Disease Info -->
+        <div class="col-md-7">
+          <div class="card border-0 shadow-sm mb-3">
+            <div class="card-header bg-warning-subtle py-2">
+              <h6 class="mb-0 fw-bold"><i class="fas fa-biohazard me-2 text-warning"></i>Causes</h6>
+            </div>
+            <div class="card-body py-2 small">{{ info.causes }}</div>
+          </div>
+
+          {% if info.symptoms %}
+          <div class="card border-0 shadow-sm mb-3">
+            <div class="card-header bg-info-subtle py-2">
+              <h6 class="mb-0 fw-bold"><i class="fas fa-eye me-2 text-info"></i>Symptoms</h6>
+            </div>
+            <div class="card-body py-2 small">{{ info.symptoms }}</div>
+          </div>
+          {% endif %}
+
+          <div class="card border-0 shadow-sm mb-3">
+            <div class="card-header bg-success-subtle py-2">
+              <h6 class="mb-0 fw-bold"><i class="fas fa-seedling me-2 text-success"></i>Organic Treatment</h6>
+            </div>
+            <div class="card-body py-2 small">{{ info.organic_remedy }}</div>
+          </div>
+
+          <div class="card border-0 shadow-sm mb-3">
+            <div class="card-header bg-danger-subtle py-2">
+              <h6 class="mb-0 fw-bold"><i class="fas fa-flask me-2 text-danger"></i>Chemical Treatment</h6>
+            </div>
+            <div class="card-body py-2 small">{{ info.chemical_remedy }}</div>
+          </div>
+
+          <div class="card border-0 shadow-sm">
+            <div class="card-header bg-primary-subtle py-2">
+              <h6 class="mb-0 fw-bold"><i class="fas fa-shield-alt me-2 text-primary"></i>Prevention Tips</h6>
+            </div>
+            <div class="card-body py-2 small">{{ info.prevention_tips }}</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="d-flex justify-content-center gap-3 flex-wrap mt-4">
+        {% if pred_id %}
+        <a href="{{ url_for('download_pdf', pred_id=pred_id) }}" class="btn btn-danger px-4">
+          <i class="fas fa-file-pdf me-2"></i>Download PDF Report
+        </a>
+        {% endif %}
+        <a href="{{ url_for('predict') }}" class="btn btn-success px-4">
+          <i class="fas fa-camera me-2"></i>New Diagnosis
+        </a>
+        <a href="{{ url_for('history') }}" class="btn btn-outline-secondary px-4">
+          <i class="fas fa-history me-2"></i>View History
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock %}

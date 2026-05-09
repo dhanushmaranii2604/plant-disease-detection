@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+{% block title %}About{% endblock %}
+{% block content %}
+<div class="container py-4">
+  <div class="row g-4">
+    <!-- Main Info -->
+    <div class="col-lg-8">
+      <div class="card border-0 shadow-sm mb-4">
+        <div class="card-header bg-success text-white">
+          <h5 class="mb-0"><i class="fas fa-info-circle me-2"></i>About This Project</h5>
+        </div>
+        <div class="card-body">
+          <h4 class="fw-bold text-success">Visual Plant Disease Diagnosis Using AI</h4>
+          <h6 class="text-muted mb-3">DL and ML Approaches for Agricultural Disease Detection</h6>
+          <p>This project presents an AI-powered web application that detects plant diseases from leaf images using both <strong>Deep Learning</strong> (MobileNet, CNN, VGG16, VGG19) and <strong>Machine Learning</strong> (SVM, Random Forest, Decision Tree, XGBoost) approaches. By simply uploading a photograph of a plant leaf, farmers and agricultural professionals can identify diseases with high accuracy and receive treatment recommendations.</p>
+          <p>The system bridges the gap between advanced AI technology and practical agricultural use, making disease detection accessible even in remote farming communities.</p>
+        </div>
+      </div>
+
+      <!-- Tech Stack -->
+      <div class="card border-0 shadow-sm mb-4">
+        <div class="card-header bg-light">
+          <h6 class="mb-0 fw-bold"><i class="fas fa-code me-2 text-success"></i>Technology Stack</h6>
+        </div>
+        <div class="card-body">
+          <div class="row g-3">
+            {% set tech = [
+              ('Backend', 'Python 3.x, Flask', 'fas fa-server', 'text-primary'),
+              ('Deep Learning', 'TensorFlow, Keras', 'fas fa-brain', 'text-danger'),
+              ('ML Models', 'Scikit-learn, XGBoost', 'fas fa-cogs', 'text-warning'),
+              ('Database', 'MySQL + phpMyAdmin', 'fas fa-database', 'text-info'),
+              ('Frontend', 'HTML5, CSS3, Bootstrap 5', 'fas fa-laptop-code', 'text-success'),
+              ('PDF Reports', 'FPDF2 Library', 'fas fa-file-pdf', 'text-danger'),
+              ('Image Processing', 'OpenCV, Pillow', 'fas fa-image', 'text-secondary'),
+              ('Dev Tools', 'VS Code, XAMPP, Jupyter', 'fas fa-tools', 'text-dark'),
+            ] %}
+            {% for name, tech_name, icon, color in tech %}
+            <div class="col-6 col-md-4">
+              <div class="d-flex align-items-start gap-2">
+                <i class="{{ icon }} {{ color }} mt-1"></i>
+                <div>
+                  <div class="fw-semibold small">{{ name }}</div>
+                  <div class="text-muted small">{{ tech_name }}</div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <!-- DL vs ML -->
+      <div class="card border-0 shadow-sm mb-4">
+        <div class="card-header bg-light">
+          <h6 class="mb-0 fw-bold"><i class="fas fa-chart-bar me-2 text-success"></i>Model Performance (Approximate)</h6>
+        </div>
+        <div class="card-body">
+          <div class="row g-3">
+            {% set model_perf = [
+              ('MobileNet','~95%','bg-success'),
+              ('VGG16','~94%','bg-success'),
+              ('VGG19','~94%','bg-success'),
+              ('CNN','~93%','bg-info'),
+              ('Random Forest','~82%','bg-warning'),
+              ('SVM','~80%','bg-warning'),
+              ('XGBoost','~83%','bg-warning'),
+              ('Decision Tree','~75%','bg-secondary'),
+            ] %}
+            {% for name, acc, color in model_perf %}
+            <div class="col-6 col-md-4">
+              <div class="d-flex justify-content-between small mb-1">
+                <span class="fw-semibold">{{ name }}</span><span>{{ acc }}</span>
+              </div>
+              <div class="progress" style="height:8px;">
+                <div class="progress-bar {{ color }}" style="width:{{ acc[1:] }}"></div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="col-lg-4">
+      <!-- Student Info -->
+      <div class="card border-0 shadow-sm mb-4">
+        <div class="card-header bg-success text-white text-center py-3">
+          <i class="fas fa-user-graduate fa-3x mb-2 d-block"></i>
+          <h5 class="mb-0 fw-bold">Dhanush M</h5>
+          <small>USN: 1NT23MC016</small>
+        </div>
+        <div class="card-body">
+          <ul class="list-unstyled mb-0 small">
+            <li class="mb-2"><i class="fas fa-graduation-cap text-success me-2"></i>MCA — 4th Semester</li>
+            <li class="mb-2"><i class="fas fa-university text-success me-2"></i>NMIT, Yelahanka, Bengaluru</li>
+            <li class="mb-2"><i class="fas fa-certificate text-success me-2"></i>VTU — Academic Year 2024-2025</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Guide -->
+      <div class="card border-0 shadow-sm mb-4">
+        <div class="card-header bg-light">
+          <h6 class="mb-0 fw-bold"><i class="fas fa-chalkboard-teacher me-2 text-success"></i>Project Guide</h6>
+        </div>
+        <div class="card-body text-center">
+          <i class="fas fa-user-tie fa-3x text-success mb-2 d-block"></i>
+          <h6 class="fw-bold">Dr. Sreekanth R</h6>
+          <small class="text-muted">Head of Department — MCA<br>NMIT, Bengaluru</small>
+        </div>
+      </div>
+
+      <!-- Supported Crops -->
+      <div class="card border-0 shadow-sm">
+        <div class="card-header bg-light">
+          <h6 class="mb-0 fw-bold"><i class="fas fa-seedling me-2 text-success"></i>Supported Crops</h6>
+        </div>
+        <div class="card-body">
+          {% set crop_list = ['🍎 Apple (4 classes)','🍒 Cherry (2 classes)','🌽 Corn (4 classes)','🍇 Grape (4 classes)','🍊 Orange (1 class)','🍑 Peach (2 classes)','🫑 Pepper (2 classes)','🥔 Potato (3 classes)','🫐 Raspberry (1 class)','🌱 Soybean (1 class)','🥗 Squash (1 class)','🍓 Strawberry (2 classes)','🍅 Tomato (10 classes)'] %}
+          {% for c in crop_list %}
+          <div class="small py-1 border-bottom">{{ c }}</div>
+          {% endfor %}
+          <div class="small pt-1 fw-bold text-success">Total: 38 classes</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}Register{% endblock %}
+{% block content %}
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+      <div class="auth-card card shadow border-0 p-4">
+        <div class="text-center mb-4">
+          <div class="auth-icon mx-auto mb-3"><i class="fas fa-user-plus fa-2x text-white"></i></div>
+          <h3 class="fw-bold">Create Account</h3>
+          <p class="text-muted small">Join to start diagnosing plant diseases</p>
+        </div>
+        <form method="POST" action="{{ url_for('register') }}">
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Username</label>
+            <div class="input-group">
+              <span class="input-group-text bg-light"><i class="fas fa-user text-success"></i></span>
+              <input type="text" class="form-control" name="username" placeholder="Choose a username" required minlength="3">
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Email Address</label>
+            <div class="input-group">
+              <span class="input-group-text bg-light"><i class="fas fa-envelope text-success"></i></span>
+              <input type="email" class="form-control" name="email" placeholder="your@email.com" required>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Password</label>
+            <div class="input-group">
+              <span class="input-group-text bg-light"><i class="fas fa-lock text-success"></i></span>
+              <input type="password" class="form-control" name="password" id="password" placeholder="Min. 6 characters" required minlength="6">
+            </div>
+          </div>
+          <div class="mb-4">
+            <label class="form-label fw-semibold">Confirm Password</label>
+            <div class="input-group">
+              <span class="input-group-text bg-light"><i class="fas fa-lock text-success"></i></span>
+              <input type="password" class="form-control" name="confirm_password" id="confirm" placeholder="Re-enter password" required>
+            </div>
+            <div id="pwdMatch" class="form-text"></div>
+          </div>
+          <button type="submit" class="btn btn-success w-100 btn-lg fw-bold">
+            <i class="fas fa-user-plus me-2"></i>Create Account
+          </button>
+        </form>
+        <hr class="my-3">
+        <p class="text-center mb-0 small">Already have an account? <a href="{{ url_for('login') }}" class="text-success fw-bold">Login here</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  const p = document.getElementById('password');
+  const c = document.getElementById('confirm');
+  const msg = document.getElementById('pwdMatch');
+  function check() {
+    if (c.value === '') { msg.textContent = ''; return; }
+    if (p.value === c.value) { msg.className = 'form-text text-success'; msg.textContent = '✓ Passwords match'; }
+    else { msg.className = 'form-text text-danger'; msg.textContent = '✗ Passwords do not match'; }
+  }
+  p.addEventListener('input', check);
+  c.addEventListener('input', check);
+</script>
+{% endblock %}

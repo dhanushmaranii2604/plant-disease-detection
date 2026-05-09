@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<div class="container py-4">
+
+  <!-- Welcome Banner -->
+  <div class="dashboard-banner rounded-3 p-4 mb-4 text-white d-flex align-items-center justify-content-between flex-wrap gap-3">
+    <div>
+      <h2 class="fw-bold mb-1"><i class="fas fa-seedling me-2"></i>Welcome, {{ username }}!</h2>
+      <p class="mb-0 opacity-75">Your plant disease diagnosis dashboard</p>
+    </div>
+    <a href="{{ url_for('predict') }}" class="btn btn-light text-success fw-bold px-4">
+      <i class="fas fa-camera me-2"></i>New Diagnosis
+    </a>
+  </div>
+
+  <!-- Stats Cards -->
+  <div class="row g-3 mb-4">
+    <div class="col-6 col-lg-3">
+      <div class="stat-card card border-0 shadow-sm text-center p-3">
+        <div class="stat-icon bg-success-subtle mb-2 mx-auto"><i class="fas fa-microscope text-success"></i></div>
+        <h3 class="fw-bold mb-0">{{ total }}</h3>
+        <small class="text-muted">Total Diagnoses</small>
+      </div>
+    </div>
+    <div class="col-6 col-lg-3">
+      <div class="stat-card card border-0 shadow-sm text-center p-3">
+        <div class="stat-icon bg-warning-subtle mb-2 mx-auto"><i class="fas fa-leaf text-warning"></i></div>
+        <h3 class="fw-bold mb-0">{{ predictions|length }}</h3>
+        <small class="text-muted">Recent (Last 6)</small>
+      </div>
+    </div>
+    <div class="col-6 col-lg-3">
+      <a href="{{ url_for('predict') }}" class="text-decoration-none">
+        <div class="stat-card card border-0 shadow-sm text-center p-3 h-100">
+          <div class="stat-icon bg-info-subtle mb-2 mx-auto"><i class="fas fa-camera text-info"></i></div>
+          <h6 class="fw-bold mb-0 text-dark">New Prediction</h6>
+          <small class="text-muted">Upload & diagnose</small>
+        </div>
+      </a>
+    </div>
+    <div class="col-6 col-lg-3">
+      <a href="{{ url_for('history') }}" class="text-decoration-none">
+        <div class="stat-card card border-0 shadow-sm text-center p-3 h-100">
+          <div class="stat-icon bg-primary-subtle mb-2 mx-auto"><i class="fas fa-history text-primary"></i></div>
+          <h6 class="fw-bold mb-0 text-dark">Full History</h6>
+          <small class="text-muted">All predictions</small>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- Recent Predictions -->
+  <div class="card border-0 shadow-sm">
+    <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
+      <h5 class="mb-0"><i class="fas fa-history me-2"></i>Recent Predictions</h5>
+      <a href="{{ url_for('history') }}" class="btn btn-sm btn-outline-light">View All</a>
+    </div>
+    <div class="card-body p-0">
+      {% if predictions %}
+      <div class="table-responsive">
+        <table class="table table-hover mb-0 align-middle">
+          <thead class="table-light">
+            <tr>
+              <th>Date</th>
+              <th>Image</th>
+              <th>Plant</th>
+              <th>Disease</th>
+              <th>Confidence</th>
+              <th>Model</th>
+              <th>Report</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for p in predictions %}
+            <tr>
+              <td class="small text-muted">{{ p.created_at.strftime('%d %b %Y') }}</td>
+              <td>
+                <img src="{{ url_for('static', filename='uploads/' ~ p.image_path) }}"
+                     class="rounded" style="width:45px;height:45px;object-fit:cover;"
+                     alt="leaf" onerror="this.src='https://via.placeholder.com/45'">
+              </td>
+              <td class="fw-semibold">{{ p.plant }}</td>
+              <td>
+                {% if 'healthy' in p.disease_name.lower() %}
+                  <span class="badge bg-success">{{ p.disease_display }}</span>
+                {% else %}
+                  <span class="badge bg-danger">{{ p.disease_display }}</span>
+                {% endif %}
+              </td>
+              <td>
+                <div class="d-flex align-items-center gap-2">
+                  <div class="progress flex-grow-1" style="height:6px;width:70px;">
+                    <div class="progress-bar bg-success" style="width:{{ p.confidence }}%"></div>
+                  </div>
+                  <small>{{ "%.1f"|format(p.confidence) }}%</small>
+                </div>
+              </td>
+              <td><span class="badge bg-secondary">{{ p.model_used or 'MobileNet' }}</span></td>
+              <td>
+                <a href="{{ url_for('download_pdf', pred_id=p.id) }}" class="btn btn-sm btn-outline-danger" title="Download PDF">
+                  <i class="fas fa-file-pdf"></i>
+                </a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% else %}
+      <div class="text-center py-5">
+        <i class="fas fa-seedling fa-4x text-muted mb-3 d-block opacity-25"></i>
+        <h5 class="text-muted">No predictions yet</h5>
+        <a href="{{ url_for('predict') }}" class="btn btn-success mt-2">Make Your First Prediction</a>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

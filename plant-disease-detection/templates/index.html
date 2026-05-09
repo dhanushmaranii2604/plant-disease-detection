@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<!-- Hero -->
+<section class="hero-section d-flex align-items-center">
+  <div class="container text-center text-white py-5">
+    <div class="hero-badge mb-3"><i class="fas fa-seedling me-2"></i>AI-Powered Agricultural Tool</div>
+    <h1 class="hero-title">Visual Plant Disease<br>Diagnosis Using <span class="text-warning">AI</span></h1>
+    <p class="hero-subtitle">Deep Learning &amp; Machine Learning Approaches<br>
+      MobileNet · CNN · VGG16 · VGG19 · SVM · Random Forest · XGBoost
+    </p>
+    <div class="d-flex justify-content-center gap-3 flex-wrap mt-4">
+      {% if session.user_id %}
+        <a href="{{ url_for('predict') }}" class="btn btn-success btn-lg px-4"><i class="fas fa-camera me-2"></i>Start Diagnosis</a>
+        <a href="{{ url_for('dashboard') }}" class="btn btn-outline-light btn-lg px-4"><i class="fas fa-th-large me-2"></i>Dashboard</a>
+      {% else %}
+        <a href="{{ url_for('register') }}" class="btn btn-success btn-lg px-4"><i class="fas fa-user-plus me-2"></i>Get Started Free</a>
+        <a href="{{ url_for('login') }}" class="btn btn-outline-light btn-lg px-4"><i class="fas fa-sign-in-alt me-2"></i>Login</a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="stats-bar py-4 bg-success text-white">
+  <div class="container">
+    <div class="row text-center g-3">
+      <div class="col-6 col-md-3"><h3 class="fw-bold mb-0">38</h3><small>Disease Classes</small></div>
+      <div class="col-6 col-md-3"><h3 class="fw-bold mb-0">9</h3><small>Crop Types</small></div>
+      <div class="col-6 col-md-3"><h3 class="fw-bold mb-0">8</h3><small>AI Models</small></div>
+      <div class="col-6 col-md-3"><h3 class="fw-bold mb-0">~95%</h3><small>MobileNet Accuracy</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <h2 class="section-title text-center mb-5">Key Features</h2>
+    <div class="row g-4">
+      {% set features = [
+        ('fas fa-brain', 'AI-Powered Detection', 'MobileNet, CNN, VGG16 & VGG19 deep learning models plus SVM, Random Forest, Decision Tree & XGBoost.'),
+        ('fas fa-flask', 'Treatment Recommendations', 'Get both organic and chemical remedy suggestions for the detected disease, tailored per crop.'),
+        ('fas fa-file-pdf', 'PDF Reports', 'Download detailed diagnosis reports with disease info, confidence score, causes and treatment.'),
+        ('fas fa-history', 'Prediction History', 'Track all past diagnoses, compare model performance and monitor crop health over time.'),
+        ('fas fa-chart-bar', 'Multi-Model Comparison', 'Run the same image through multiple models (DL and ML) and compare confidence scores.'),
+        ('fas fa-mobile-alt', 'Mobile Friendly', 'Fully responsive design works on desktop, tablet and mobile devices.')
+      ] %}
+      {% for icon, title, desc in features %}
+      <div class="col-md-6 col-lg-4">
+        <div class="feature-card card h-100 border-0 shadow-sm p-4 text-center">
+          <div class="feature-icon mb-3"><i class="{{ icon }} fa-2x text-success"></i></div>
+          <h5 class="fw-bold">{{ title }}</h5>
+          <p class="text-muted small mb-0">{{ desc }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Supported Crops -->
+<section class="py-5">
+  <div class="container">
+    <h2 class="section-title text-center mb-4">Supported Crops &amp; Diseases</h2>
+    <div class="row g-3 justify-content-center">
+      {% set crops = [
+        ('🍎','Apple','Scab, Black Rot, Cedar Rust'),
+        ('🍒','Cherry','Powdery Mildew'),
+        ('🌽','Corn','Common Rust, N. Leaf Blight, Cercospora'),
+        ('🍇','Grape','Black Rot, Esca, Leaf Blight'),
+        ('🍑','Peach','Bacterial Spot'),
+        ('🫑','Pepper','Bacterial Spot'),
+        ('🥔','Potato','Early & Late Blight'),
+        ('🍅','Tomato','Bacterial Spot, Early/Late Blight, Leaf Mold +more'),
+        ('🍓','Strawberry','Leaf Scorch'),
+      ] %}
+      {% for emoji, crop, diseases in crops %}
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="crop-card card border-0 shadow-sm p-3 h-100">
+          <div class="fs-2 text-center mb-2">{{ emoji }}</div>
+          <h6 class="fw-bold text-center text-success">{{ crop }}</h6>
+          <p class="text-muted text-center small mb-0">{{ diseases }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- How it Works -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <h2 class="section-title text-center mb-5">How It Works</h2>
+    <div class="row g-4 align-items-center">
+      {% set steps = [('1','Upload Image','Take a clear photo of the plant leaf and upload it.','fas fa-upload'),
+                      ('2','AI Analysis','Our trained deep learning model analyses the image.','fas fa-brain'),
+                      ('3','Get Results','View disease name, confidence score and remedies.','fas fa-clipboard-check'),
+                      ('4','Download PDF','Save a complete report for records or expert consultation.','fas fa-file-pdf')] %}
+      {% for num, title, desc, icon in steps %}
+      <div class="col-6 col-md-3 text-center">
+        <div class="step-circle mx-auto mb-3">{{ num }}</div>
+        <i class="{{ icon }} fa-2x text-success mb-2 d-block"></i>
+        <h6 class="fw-bold">{{ title }}</h6>
+        <p class="text-muted small">{{ desc }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+{% if not session.user_id %}
+<section class="py-5 bg-success text-white text-center">
+  <div class="container">
+    <h2 class="fw-bold mb-3">Ready to Diagnose Your Crops?</h2>
+    <p class="lead mb-4">Create a free account and start detecting plant diseases instantly.</p>
+    <a href="{{ url_for('register') }}" class="btn btn-light btn-lg px-5 text-success fw-bold">
+      <i class="fas fa-user-plus me-2"></i>Create Free Account
+    </a>
+  </div>
+</section>
+{% endif %}
+{% endblock %}

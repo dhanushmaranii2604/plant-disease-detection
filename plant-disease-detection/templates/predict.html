@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+{% block title %}Diagnose{% endblock %}
+{% block content %}
+<div class="container py-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card border-0 shadow">
+        <div class="card-header bg-success text-white text-center py-3">
+          <h4 class="mb-0"><i class="fas fa-microscope me-2"></i>Plant Disease Diagnosis</h4>
+          <small class="opacity-75">Upload a clear photo of a plant leaf</small>
+        </div>
+        <div class="card-body p-4">
+          <form method="POST" action="{{ url_for('predict') }}" enctype="multipart/form-data" id="predictForm">
+
+            <!-- Model selector -->
+            <div class="mb-4">
+              <label class="form-label fw-bold">Select AI Model</label>
+              <div class="row g-2">
+                {% set all_models = ['MobileNet','CNN','VGG16','VGG19','SVM','RandomForest','DecisionTree','XGBoost'] %}
+                {% set dl_models = ['MobileNet','CNN','VGG16','VGG19'] %}
+                {% set ml_models = ['SVM','RandomForest','DecisionTree','XGBoost'] %}
+                <div class="col-12 mb-1"><small class="text-muted fw-semibold"><i class="fas fa-brain me-1 text-success"></i>Deep Learning</small></div>
+                {% for m in dl_models %}
+                <div class="col-6 col-md-3">
+                  <input type="radio" class="btn-check" name="model_name" id="m_{{ m }}" value="{{ m }}"
+                         {% if m == 'MobileNet' %}checked{% endif %}
+                         {% if m not in models %}disabled{% endif %}>
+                  <label class="btn btn-outline-success w-100 btn-sm {% if m not in models %}opacity-50{% endif %}" for="m_{{ m }}">
+                    {{ m }}{% if m not in models %} <i class="fas fa-times-circle text-muted"></i>{% endif %}
+                  </label>
+                </div>
+                {% endfor %}
+                <div class="col-12 mt-2 mb-1"><small class="text-muted fw-semibold"><i class="fas fa-cogs me-1 text-primary"></i>Machine Learning</small></div>
+                {% for m in ml_models %}
+                <div class="col-6 col-md-3">
+                  <input type="radio" class="btn-check" name="model_name" id="m_{{ m }}" value="{{ m }}"
+                         {% if m not in models %}disabled{% endif %}>
+                  <label class="btn btn-outline-primary w-100 btn-sm {% if m not in models %}opacity-50{% endif %}" for="m_{{ m }}">
+                    {{ m }}{% if m not in models %} <i class="fas fa-times-circle text-muted"></i>{% endif %}
+                  </label>
+                </div>
+                {% endfor %}
+              </div>
+              {% if not models %}
+              <div class="alert alert-warning mt-2 small py-2">
+                <i class="fas fa-exclamation-triangle me-1"></i>
+                No models found in <code>models/</code> folder. Copy your <code>.h5</code> and <code>.joblib</code> files there.
+              </div>
+              {% endif %}
+            </div>
+
+            <!-- Upload area -->
+            <div class="mb-4">
+              <label class="form-label fw-bold">Plant Leaf Image</label>
+              <div class="upload-area rounded-3 text-center p-5 border border-2 border-dashed" id="uploadArea"
+                   onclick="document.getElementById('imageInput').click()">
+                <i class="fas fa-cloud-upload-alt fa-3x text-success mb-3 d-block"></i>
+                <p class="mb-1 fw-semibold">Click to select or drag &amp; drop</p>
+                <small class="text-muted">Supported: JPG, PNG, JPEG, WEBP (max 16MB)</small>
+                <input type="file" id="imageInput" name="image" accept="image/*" class="d-none" required>
+              </div>
+              <!-- Preview -->
+              <div id="previewBox" class="mt-3 text-center d-none">
+                <img id="previewImg" src="#" alt="Preview"
+                     class="rounded shadow img-fluid" style="max-height:250px;">
+                <p class="mt-2 text-success small"><i class="fas fa-check-circle me-1"></i><span id="previewName"></span></p>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-success w-100 btn-lg fw-bold" id="submitBtn" disabled>
+              <i class="fas fa-microscope me-2"></i>Diagnose Disease
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Tips -->
+      <div class="card border-0 shadow-sm mt-4">
+        <div class="card-body">
+          <h6 class="fw-bold text-success"><i class="fas fa-lightbulb me-2"></i>Tips for Best Results</h6>
+          <div class="row g-2 mt-1">
+            {% set tips = [
+              ('fas fa-sun','Use well-lit, clear photos of the leaf'),
+              ('fas fa-expand','Include both healthy and affected areas'),
+              ('fas fa-camera','Avoid blurry or overexposed images'),
+              ('fas fa-leaf','Photograph the leaf against a plain background'),
+            ] %}
+            {% for icon, tip in tips %}
+            <div class="col-6 small text-muted"><i class="{{ icon }} text-success me-2"></i>{{ tip }}</div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const input = document.getElementById('imageInput');
+const submitBtn = document.getElementById('submitBtn');
+const previewBox = document.getElementById('previewBox');
+const previewImg = document.getElementById('previewImg');
+const previewName = document.getElementById('previewName');
+const uploadArea = document.getElementById('uploadArea');
+
+input.addEventListener('change', function () {
+  const file = this.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    previewImg.src = e.target.result;
+    previewName.textContent = file.name;
+    previewBox.classList.remove('d-none');
+    uploadArea.style.display = 'none';
+    submitBtn.disabled = false;
+  };
+  reader.readAsDataURL(file);
+});
+
+// Drag and drop
+uploadArea.addEventListener('dragover', (e) => { e.preventDefault(); uploadArea.classList.add('drag-over'); });
+uploadArea.addEventListener('dragleave', () => uploadArea.classList.remove('drag-over'));
+uploadArea.addEventListener('drop', (e) => {
+  e.preventDefault(); uploadArea.classList.remove('drag-over');
+  const file = e.dataTransfer.files[0];
+  if (file && file.type.startsWith('image/')) {
+    const dt = new DataTransfer(); dt.items.add(file); input.files = dt.files;
+    input.dispatchEvent(new Event('change'));
+  }
+});
+</script>
+{% endblock %}
