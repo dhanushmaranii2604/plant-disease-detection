@@ -1,271 +1,170 @@
 # 🌿 Visual Plant Disease Diagnosis Using AI
 
-## DL and ML Approaches for Agricultural Disease Detection
-
 <p align="center">
-  <img src="https://img.shields.io/badge/Python-3.10%2B-blue?logo=python" alt="Python">
-  <img src="https://img.shields.io/badge/Flask-2.3-green?logo=flask" alt="Flask">
-  <img src="https://img.shields.io/badge/TensorFlow-2.13-orange?logo=tensorflow" alt="TensorFlow">
-  <img src="https://img.shields.io/badge/MySQL-8.0-blue?logo=mysql" alt="MySQL">
-  <img src="https://img.shields.io/badge/License-Academic-lightgrey" alt="License">
+  <img src="https://images.unsplash.com/photo-1523348837708-15d4a6cfd43d?auto=format&fit=crop&w=1600&q=85" alt="Green agricultural plants" width="100%">
 </p>
 
----
+<p align="center"><strong>AI-assisted plant disease screening from leaf images.</strong></p>
 
-## 📌 Project Overview
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white" alt="Python">
+  <img src="https://img.shields.io/badge/Flask-2.3-000000?logo=flask&logoColor=white" alt="Flask">
+  <img src="https://img.shields.io/badge/TensorFlow-2.13-FF6F00?logo=tensorflow&logoColor=white" alt="TensorFlow">
+  <img src="https://img.shields.io/badge/MySQL-8.0-4479A1?logo=mysql&logoColor=white" alt="MySQL">
+</p>
 
-An AI-powered web application that detects plant diseases from leaf images using **Deep Learning** and **Machine Learning** models. Users upload a photo of a plant leaf and the system instantly identifies the disease, provides organic and chemical treatment recommendations, and generates downloadable PDF reports.
+## Overview
 
-**Submitted by:** Dhanush M (USN: 1NT23MC016)  
-**Degree:** Master of Computer Applications (MCA)  
-**Institution:** Nitte Meenakshi Institute of Technology (NMIT), Yelahanka, Bengaluru — 560064  
-**University:** Visvesvaraya Technological University (VTU)  
-**Guide:** Dr. Sreekanth R, HOD-MCA, NMIT  
-**Academic Year:** 2024-2025
+This Flask web application classifies plant leaf images using TensorFlow/Keras and scikit-learn/XGBoost models. It provides authentication, image upload, disease information, treatment guidance, prediction history, and downloadable PDF reports.
 
----
+Developed by **Dhanush M** (`1NT23MC016`) for the MCA program at **Nitte Meenakshi Institute of Technology (NMIT), Bengaluru**, under the guidance of **Dr. Sreekanth R**.
 
-## ✨ Features
+> **Responsible use:** This is an academic screening tool, not a replacement for an agronomist or plant pathologist. Predictions depend on image quality and training data. Always follow local agricultural guidance and product labels.
 
-- 🔐 **User Authentication** — Secure register/login with bcrypt password hashing
-- 📸 **Image Upload** — Drag-and-drop or click-to-upload interface
-- 🤖 **Multi-Model AI** — Choose from 8 AI models (DL + ML) per diagnosis
-- 📊 **Confidence Score** — Visual progress bar showing prediction confidence
-- 🌱 **Treatment Recommendations** — Organic & chemical remedies per disease
-- 📄 **PDF Report Download** — Structured report with image, disease info, remedies
-- 📜 **Prediction History** — Full history with timestamps and model info
-- 📱 **Responsive Design** — Works on desktop, tablet, and mobile
+## Realistic visual reference gallery
 
----
+<p align="center">
+  <img src="https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=1200&q=85" alt="Close-up of green plant leaves" width="48%">
+  <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=1200&q=85" alt="Plants growing in a garden" width="48%">
+</p>
 
-## 🤖 AI Models
+<p align="center">
+  <img src="https://images.unsplash.com/photo-1591857177580-dc82b9ac4e1e?auto=format&fit=crop&w=1200&q=85" alt="Vegetable crop leaves" width="48%">
+  <img src="https://images.unsplash.com/photo-1523348837708-15d4a6cfd43d?auto=format&fit=crop&w=1200&q=85" alt="Agricultural field plants" width="48%">
+</p>
 
-### Deep Learning (TensorFlow/Keras)
-| Model | Architecture | Accuracy |
-|-------|-------------|----------|
-| MobileNet | Depthwise Separable CNN | ~95% |
-| VGG16 | Deep CNN (16 layers) | ~94% |
-| VGG19 | Deep CNN (19 layers) | ~94% |
-| Custom CNN | Custom Architecture | ~93% |
+These are real agricultural photographs used for project presentation and visual context only. They are **not** training images, disease examples, ground truth, or model evaluation results. See the complete [visual gallery documentation](docs/visual-gallery.md).
 
-### Machine Learning (Scikit-learn / XGBoost)
-| Model | Algorithm | Accuracy |
-|-------|-----------|----------|
-| Random Forest | Ensemble | ~82% |
-| XGBoost | Gradient Boosting | ~83% |
-| SVM | Support Vector Machine | ~80% |
-| Decision Tree | CART | ~75% |
+## Features
 
----
+- 🔐 Registration and login with bcrypt password hashing
+- 📸 JPG, JPEG, PNG, WEBP, and BMP image upload support
+- 🤖 Deep-learning and classical machine-learning model selection
+- 📊 Prediction class and confidence score display
+- 🌱 Causes, symptoms, organic remedies, chemical guidance, and prevention tips
+- 📜 User-scoped prediction history in MySQL
+- 📄 Downloadable PDF diagnosis reports
+- 📱 Responsive Bootstrap interface with drag-and-drop preview
 
-## 🌿 Supported Plants & Diseases (38 Classes)
+## AI models
 
-| Plant | Diseases |
-|-------|----------|
-| Apple | Scab, Black Rot, Cedar Apple Rust, Healthy |
-| Cherry | Powdery Mildew, Healthy |
-| Corn | Cercospora Leaf Spot, Common Rust, Northern Leaf Blight, Healthy |
-| Grape | Black Rot, Esca (Black Measles), Leaf Blight, Healthy |
-| Orange | Huanglongbing (Citrus Greening) |
-| Peach | Bacterial Spot, Healthy |
-| Pepper | Bacterial Spot, Healthy |
-| Potato | Early Blight, Late Blight, Healthy |
-| Tomato | Bacterial Spot, Early/Late Blight, Leaf Mold, Septoria, Spider Mites, Target Spot, Yellow Leaf Curl Virus, Mosaic Virus, Healthy |
+| Category | Models | Processing |
+|---|---|---|
+| Deep learning | MobileNet, Custom CNN, VGG16, VGG19 | 224 × 224 RGB images with TensorFlow/Keras |
+| Machine learning | SVM, Random Forest, Decision Tree, XGBoost | Flattened normalized image features |
 
----
+The class-index mapping is maintained in [`utils/model_utils.py`](utils/model_utils.py). Accuracy numbers should only be published with their dataset split, evaluation method, and experiment artifacts; validation metrics are not calculated by the web app at runtime.
 
-## 🛠️ Tech Stack
+## Supported dataset classes
 
-| Category | Technologies |
-|----------|-------------|
-| Backend | Python 3.x, Flask 2.3 |
-| Deep Learning | TensorFlow 2.13, Keras |
-| Machine Learning | Scikit-learn, XGBoost |
-| Image Processing | OpenCV, Pillow |
-| Database | MySQL 8.0, mysql-connector-python |
-| Frontend | HTML5, CSS3, JavaScript, Bootstrap 5, Font Awesome |
-| PDF Generation | FPDF2 |
-| Security | Flask-Bcrypt (password hashing) |
-| Dev Tools | VS Code, Jupyter Notebook, XAMPP |
+The predictor uses the PlantVillage class mapping defined in `utils/model_utils.py`, covering healthy and diseased leaves from crops including apple, blueberry, cherry, corn, grape, orange, peach, pepper, potato, raspberry, soybean, squash, strawberry, and tomato.
 
----
+## Architecture
 
-## 📁 Project Structure
-
+```mermaid
+flowchart LR
+    User --> Flask[Flask web app]
+    Flask --> Auth[Authentication]
+    Flask --> Upload[Image upload]
+    Upload --> Predictor[PlantDiseasePredictor]
+    Predictor --> DL[TensorFlow/Keras]
+    Predictor --> ML[scikit-learn/XGBoost]
+    Flask --> MySQL[(MySQL)]
+    Flask --> PDF[FPDF2 report]
 ```
+
+## Project structure
+
+```text
 plant-disease-detection/
-├── app.py                  # Main Flask application
-├── requirements.txt        # Python dependencies
-├── .gitignore
-├── README.md
-│
-├── models/                 # Trained model files (.h5, .joblib)
-│   ├── MobileNetModel_best.h5
-│   ├── CustomCNNModel_best.h5
-│   ├── VGG16Model_best.h5
-│   ├── VGG19Model_best.h5
-│   ├── svm_model.joblib
-│   ├── random_forest_model.joblib
-│   ├── decision_tree_model.joblib
-│   └── xgboost_model.joblib
-│
-├── static/
-│   ├── css/style.css
-│   ├── js/main.js
-│   └── uploads/            # User-uploaded images (gitignored)
-│
-├── templates/
-│   ├── base.html
-│   ├── index.html
-│   ├── login.html
-│   ├── register.html
-│   ├── dashboard.html
-│   ├── predict.html
-│   ├── result.html
-│   ├── history.html
-│   └── about.html
-│
-├── database/
-│   └── schema.sql          # MySQL database schema + seed data
-│
-├── utils/
-│   └── model_utils.py      # Model loading and inference
-│
-└── reports/                # Generated PDF reports (gitignored)
+├── app.py                 # Flask routes, authentication, diagnosis, reports
+├── requirements.txt       # Python dependencies
+├── database/schema.sql    # MySQL schema and disease data
+├── models/                # Local .h5/.joblib artifacts; gitignored
+├── utils/model_utils.py   # Model discovery and inference
+├── templates/             # Jinja2 pages
+├── static/css/            # Application styles
+├── static/js/             # Browser behavior
+├── static/uploads/        # Runtime uploads; gitignored
+├── reports/               # Generated PDFs; gitignored
+└── docs/                  # Architecture and visual documentation
 ```
 
----
-
-## 🚀 Installation & Setup
+## Setup
 
 ### Prerequisites
+
 - Python 3.10+
-- MySQL 8.0+ (or XAMPP/phpMyAdmin)
+- MySQL 8.0+ or XAMPP
 - Git
+- Trained model files for real predictions
 
-### 1. Clone the repository
+### Install and run
+
 ```bash
-git clone https://github.com/YOUR_USERNAME/plant-disease-detection.git
+git clone https://github.com/dhanushmaranii2604/plant-disease-detection.git
 cd plant-disease-detection
-```
+python -m venv .venv
 
-### 2. Create virtual environment
-```bash
-python -m venv venv
-# Windows
-venv\Scripts\activate
-# Linux/Mac
-source venv/bin/activate
-```
+# Windows PowerShell
+.venv\Scripts\Activate.ps1
+# macOS/Linux
+source .venv/bin/activate
 
-### 3. Install dependencies
-```bash
+python -m pip install --upgrade pip
 pip install -r requirements.txt
-```
-
-### 4. Set up MySQL database
-Open phpMyAdmin or MySQL CLI and run:
-```sql
-source database/schema.sql
-```
-Or import `database/schema.sql` via phpMyAdmin.
-
-### 5. Copy your trained models
-Copy your `.h5` and `.joblib` files into the `models/` folder:
-```
-models/MobileNetModel_best.h5
-models/CustomCNNModel_best.h5
-models/VGG16Model_best.h5
-models/VGG19Model_best.h5
-models/svm_model.joblib
-models/random_forest_model.joblib
-models/decision_tree_model.joblib
-models/xgboost_model.joblib
-```
-
-### 6. Configure database credentials
-Edit the `DB_CONFIG` in `app.py`:
-```python
-DB_CONFIG = {
-    'host':     'localhost',
-    'user':     'root',
-    'password': 'your_mysql_password',  # Update this
-    'database': 'plant_disease_db',
-}
-```
-
-### 7. Run the application
-```bash
+mysql -u root -p < database/schema.sql
 python app.py
 ```
 
-### 8. Open in browser
-Navigate to: **http://127.0.0.1:5000**
+Open <http://127.0.0.1:5000>.
 
----
+Place trained artifacts in `models/` using the names expected by `utils/model_utils.py`. The application can start without model files, but diagnosis requires at least one compatible model.
 
-## 📸 Usage Guide
+## Configuration
 
-1. **Register** a new account at `/register`
-2. **Login** with your credentials
-3. Go to **Diagnose** and upload a clear plant leaf image
-4. **Select a model** (MobileNet recommended for best accuracy)
-5. Click **Diagnose Disease**
-6. View results: disease name, confidence score, causes, and treatments
-7. **Download PDF** report for records or expert consultation
-8. Check **History** to review past predictions
+The application reads these environment variables:
 
----
+| Variable | Default | Purpose |
+|---|---|---|
+| `SECRET_KEY` | development fallback | Flask session signing; set a strong production value |
+| `DB_HOST` | `localhost` | MySQL host |
+| `DB_USER` | `root` | MySQL user |
+| `DB_PASSWORD` | empty | MySQL password |
+| `DB_NAME` | `plant_disease_db` | Database name |
 
-## 📊 Methodology
+## Typical workflow
 
-1. **Data Collection** — PlantVillage dataset (87,000+ images, 38 classes)
-2. **Preprocessing** — Resize to 224×224, normalize pixel values, data augmentation
-3. **Model Training** — DL: transfer learning + fine-tuning; ML: feature extraction
-4. **Evaluation** — Accuracy, precision, recall, F1-score, confusion matrix
-5. **Deployment** — Flask web app with MySQL backend
+1. Register and sign in.
+2. Open **Diagnose** and choose an available model.
+3. Upload a clear, well-lit leaf image.
+4. Review the prediction and disease guidance.
+5. Download a PDF report or revisit the result in **History**.
 
----
+## Security and deployment notes
 
-## 🧪 Testing
+Before production deployment:
 
-- Unit Testing — Individual component validation
-- Functional Testing — All features tested (register, login, upload, predict, PDF)
-- Integration Testing — Frontend ↔ Backend ↔ Database flow
-- Usability Testing — Responsive across desktop and mobile
-- Security Testing — SQL injection prevention, file validation
-- Performance Testing — Load time and prediction speed
+- Set a strong `SECRET_KEY` through the environment.
+- Disable Flask debug mode.
+- Add CSRF protection to POST forms.
+- Validate actual image content, not only file extensions.
+- Use UUID-based filenames and a least-privilege database user.
+- Do not expose raw database exceptions to users.
+- Run behind Gunicorn or Waitress with HTTPS.
 
----
+## Documentation
 
-## 🔮 Future Enhancements
+- [Architecture and deployment notes](docs/architecture.md)
+- [Reference images](docs/reference-images.md)
+- [Realistic visual gallery](docs/visual-gallery.md)
 
-- 📱 Android/iOS mobile application
-- 🌐 Multilingual support (Kannada, Hindi, Telugu)
-- 🎤 Voice-based control for low-literacy users
-- 🌦️ Weather and soil data integration
-- 🚁 Drone-assisted large-scale crop monitoring
-- 🌍 Expanded disease database for more crops
+## References
 
----
+- [PlantVillage dataset](https://www.kaggle.com/emmarex/plantdisease)
+- Mohanty, Hughes, and Salathé (2016), *Using deep learning for image-based plant disease detection*, Frontiers in Plant Science.
+- Howard et al. (2017), *MobileNets*, arXiv:1704.04861.
 
-## 📚 References
+## Academic project
 
-1. Salathé, M. et al. (2016). *Using deep learning for image-based plant disease detection.* Frontiers in Plant Science.
-2. Yujian, L. et al. (2019). *Evaluation of refined deep learning models.* Computers and Electronics in Agriculture.
-3. Howard, A. G. et al. (2017). *MobileNets.* arXiv:1704.04861.
-4. PlantVillage Dataset — https://www.kaggle.com/emmarex/plantdisease
-
----
-
-## 👨‍💻 Author
-
-**Dhanush M**  
-USN: 1NT23MC016  
-MCA — 4th Semester  
-Nitte Meenakshi Institute of Technology, Bengaluru  
-Under guidance of **Dr. Sreekanth R** (HOD-MCA, NMIT)
-
----
-
-*This project is developed for academic purposes as part of the MCA degree requirements at NMIT, Bengaluru.*
+This project was developed for academic purposes as part of the MCA degree requirements at NMIT, Bengaluru, during the 2024–2025 academic year.
