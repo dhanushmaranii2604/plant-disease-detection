@@ -49,16 +49,13 @@ The platform includes:
 ## Plant disease reference images
 
 <p align="center">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Late_blight_on_tomato_leaves_01.jpg" alt="Tomato leaves affected by late blight" width="48%">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Downy_mildew_grape_2.JPG" alt="Grape leaf affected by downy mildew" width="48%">
+  <img src="https://raw.githubusercontent.com/dhanushmaranii2604/plant-disease-detection/main/docs/images/tomato-late-blight.svg" alt="Tomato leaves affected by late blight" width="48%">
+  <img src="https://raw.githubusercontent.com/dhanushmaranii2604/plant-disease-detection/main/docs/images/grape-downy-mildew.svg" alt="Grape leaf affected by downy mildew" width="48%">
 </p>
 
 <p align="center">
-  <em>Real disease reference photographs shown for project presentation and visual context only. They are not training images, ground truth, or model evaluation results.</em>
+  <em>Real disease reference illustrations shown for project presentation and visual context only. They are not training images, ground truth, or model evaluation results.</em>
 </p>
-
-- [Tomato late blight image source](https://commons.wikimedia.org/wiki/File:Late_blight_on_tomato_leaves_01.jpg)
-- [Grape downy mildew image source](https://commons.wikimedia.org/wiki/File:Downy_mildew_grape_2.JPG)
 
 ## Features
 

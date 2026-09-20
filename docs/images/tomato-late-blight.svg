@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Tomato late blight illustration</title>
+  <desc id="desc">Stylized tomato leaves showing dark lesions and chlorotic spots consistent with late blight.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1">
+      <stop offset="0%" stop-color="#eaf9ef"/>
+      <stop offset="100%" stop-color="#f7fbf7"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <g stroke="#2c5e3d" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M220 560 C180 460, 210 320, 280 220 C340 280, 360 410, 330 560 Z" fill="#5ebd63"/>
+    <path d="M280 560 C260 455, 345 300, 430 220 C510 290, 500 420, 450 560 Z" fill="#69c86f"/>
+    <path d="M450 560 C430 440, 540 315, 610 240 C690 315, 680 450, 620 560 Z" fill="#4fac57"/>
+    <path d="M620 560 C595 455, 710 310, 810 230 C880 300, 876 410, 820 560 Z" fill="#60be68"/>
+    <path d="M810 560 C798 438, 900 330, 980 260 C1060 340, 1055 470, 980 560 Z" fill="#5bbd64"/>
+  </g>
+  <g fill="#d43b2a" opacity="0.95">
+    <ellipse cx="295" cy="365" rx="58" ry="48"/>
+    <ellipse cx="362" cy="431" rx="64" ry="50"/>
+    <ellipse cx="518" cy="362" rx="58" ry="46"/>
+    <ellipse cx="620" cy="408" rx="70" ry="54"/>
+    <ellipse cx="887" cy="380" rx="60" ry="44"/>
+    <ellipse cx="968" cy="430" rx="64" ry="52"/>
+  </g>
+  <g fill="#e7d360" opacity="0.95">
+    <circle cx="255" cy="463" r="18"/>
+    <circle cx="410" cy="505" r="22"/>
+    <circle cx="600" cy="500" r="18"/>
+    <circle cx="820" cy="490" r="24"/>
+    <circle cx="930" cy="513" r="18"/>
+  </g>
+  <g stroke="#7aa35a" stroke-width="6" opacity="0.9">
+    <path d="M305 250 L290 175"/>
+    <path d="M420 255 L440 170"/>
+    <path d="M560 252 L575 165"/>
+    <path d="M710 250 L700 165"/>
+    <path d="M915 255 L930 175"/>
+  </g>
+  <g fill="#e6f1ec" opacity="0.8">
+    <circle cx="325" cy="175" r="18"/>
+    <circle cx="440" cy="165" r="22"/>
+    <circle cx="575" cy="160" r="20"/>
+    <circle cx="700" cy="165" r="18"/>
+    <circle cx="930" cy="175" r="22"/>
+  </g>
+</svg>

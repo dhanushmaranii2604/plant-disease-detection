@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Grape downy mildew illustration</title>
+  <desc id="desc">Stylized grape leaves showing yellow blotches and fungal lesions indicative of downy mildew.</desc>
+  <defs>
+    <linearGradient id="bg2" x1="0" x2="1">
+      <stop offset="0%" stop-color="#edf7ea"/>
+      <stop offset="100%" stop-color="#fafaf2"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg2)"/>
+  <g stroke="#3d7a4a" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M200 590 C180 520, 210 375, 260 260 C310 300, 360 420, 325 590 Z" fill="#68c06d"/>
+    <path d="M290 590 C310 500, 390 360, 460 250 C560 330, 555 450, 505 590 Z" fill="#5bbf63"/>
+    <path d="M495 590 C495 500, 610 360, 700 260 C770 330, 780 470, 735 590 Z" fill="#72c975"/>
+    <path d="M700 590 C700 490, 820 355, 910 260 C995 345, 1010 470, 955 590 Z" fill="#66bf6d"/>
+  </g>
+  <g fill="#f2c64f" opacity="0.95">
+    <ellipse cx="373" cy="420" rx="80" ry="54"/>
+    <ellipse cx="585" cy="430" rx="88" ry="52"/>
+    <ellipse cx="850" cy="420" rx="84" ry="54"/>
+  </g>
+  <g fill="#d75b3d" opacity="0.85">
+    <circle cx="314" cy="376" r="18"/>
+    <circle cx="338" cy="442" r="18"/>
+    <circle cx="565" cy="372" r="19"/>
+    <circle cx="612" cy="465" r="18"/>
+    <circle cx="822" cy="382" r="20"/>
+    <circle cx="876" cy="458" r="18"/>
+  </g>
+  <g fill="#d9efdd" opacity="0.8">
+    <circle cx="280" cy="210" r="18"/>
+    <circle cx="470" cy="185" r="20"/>
+    <circle cx="720" cy="200" r="18"/>
+    <circle cx="905" cy="185" r="20"/>
+  </g>
+  <g stroke="#5e8b5a" stroke-width="5" opacity="0.9">
+    <path d="M268 255 L252 170"/>
+    <path d="M460 245 L466 164"/>
+    <path d="M705 255 L698 170"/>
+    <path d="M910 245 L926 170"/>
+  </g>
+</svg>
