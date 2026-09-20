@@ -1,13 +1,17 @@
 # Reference images
 
-This directory contains lightweight, repository-hosted SVG illustrations for the project documentation and presentation:
+This directory contains two kinds of visual references:
+
+## Realistic photography
+
+See the [realistic visual gallery](visual-gallery.md) for real agricultural photographs suitable for the README, project presentation, and product-context sections.
+
+## Illustrations
 
 | Image | Purpose |
 |---|---|
-| [Healthy leaf](images/healthy-leaf-reference.svg) | Shows an example healthy-leaf visual |
-| [Fungal symptom](images/fungal-leaf-reference.svg) | Shows an illustrative lesion pattern |
-| [Bacterial symptom](images/bacterial-leaf-reference.svg) | Shows an illustrative spot/halo pattern |
+| [Healthy leaf](images/healthy-leaf-reference.svg) | Example healthy-leaf visual |
+| [Fungal symptom](images/fungal-leaf-reference.svg) | Illustrative lesion pattern |
+| [Bacterial symptom](images/bacterial-leaf-reference.svg) | Illustrative spot/halo pattern |
 
-These are **illustrations for UI and README reference only**. They are not photographs, training data, ground truth, or diagnostic evidence. Do not use them to evaluate the models.
-
-For real evaluation screenshots, add anonymized examples from the PlantVillage dataset or your own test set and document the source, class label, and usage permission.
+The illustrations and photographs are **presentation references only**. They are not ground truth, training data, diagnostic evidence, or model evaluation samples. For real evaluation screenshots, use documented test images and record their source, class label, and permission.
