@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-labelledby="title desc">
+  <title id="title">Healthy leaf reference illustration</title>
+  <desc id="desc">A green leaf illustration labelled healthy reference.</desc>
+  <defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#e8f5e9"/><stop offset="1" stop-color="#b7e4c7"/></linearGradient><linearGradient id="leaf" x2="1" y2="1"><stop stop-color="#74c69d"/><stop offset="1" stop-color="#1b7837"/></linearGradient></defs>
+  <rect width="800" height="500" rx="28" fill="url(#bg)"/>
+  <path d="M400 420C388 310 390 205 440 95" fill="none" stroke="#2d6a4f" stroke-width="10" stroke-linecap="round"/>
+  <path d="M405 330C280 305 190 215 220 80c150 8 235 93 185 250Z" fill="url(#leaf)" stroke="#155d27" stroke-width="8"/>
+  <path d="M405 330C500 295 625 235 660 95c-145 0-238 89-255 235Z" fill="#40916c" stroke="#155d27" stroke-width="8"/>
+  <path d="M230 100 405 330M650 112 405 330M300 160 405 260M560 160 420 275" stroke="#b7e4c7" stroke-width="6" opacity=".75"/>
+  <rect x="40" y="38" width="280" height="58" rx="29" fill="#1b4d3e"/><text x="180" y="76" text-anchor="middle" font-family="Arial,sans-serif" font-size="25" font-weight="700" fill="white">HEALTHY LEAF</text>
+  <text x="400" y="465" text-anchor="middle" font-family="Arial,sans-serif" font-size="22" fill="#1b4d3e">Example reference image — not a model prediction sample</text>
+</svg>
